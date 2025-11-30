@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tugas 3 - SITTA UT (Vue.js)</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- Vue 2 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <h1>SITTA - Pemesanan Bahan Ajar</h1>
+      <nav class="navbar-tabs">
+  <button @click="tab='stok'" :class="{active: tab==='stok'}">
+    <img src="assets/img/stock.png" />
+    Stok
+  </button>
+
+  <button @click="tab='tracking'" :class="{active: tab==='tracking'}">
+    <img src="assets/img/tracking.png" />
+    Tracking DO
+  </button>
+
+  <button @click="tab='tambahDO'" :class="{active: tab==='tambahDO'}">
+    <img src="assets/img/add.png" />
+    Tambah DO
+  </button>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section v-if="tab==='stok'">
+        <ba-stock-table :data-url="'data/dataBahanAjar.json'"></ba-stock-table>
+      </section>
+
+      <section v-if="tab==='tracking'">
+        <do-tracking :data-url="'data/dataBahanAjar.json'"></do-tracking>
+      </section>
+
+      <section v-if="tab==='tambahDO'">
+        <do-create :data-url="'data/dataBahanAjar.json'"></do-create>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <small>Project tugas3-vue-ut</small>
+    </footer>
+  </div>
+
+  <script src="js/services/api.js"></script>
+  <script src="js/components/status-badge.js"></script>
+  <script src="js/components/app-modal.js"></script>
+  <script src="js/components/stock-table.js"></script>
+  <script src="js/components/do-tracking.js"></script>
+  <script src="js/components/do-create.js"></script>
+  <script src="js/app.js"></script>
+  <div id="toast" class="toast">Data berhasil disimpan!</div>
+</body>
+</html>
